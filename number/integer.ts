@@ -3,6 +3,7 @@ import {Number} from "./number";
 export class Integer extends Number {
     static ZERO = new Integer(0n);
     static ONE = new Integer(1n);
+    static NEGATIVE_ONE = new Integer(-1n);
 
     value: bigint;
 
