@@ -1,14 +1,13 @@
 import {Number} from '../number/number';
 import {Integer} from "../number/integer";
 import {Rational} from "../number/rational";
-import {Multiplication} from "./multiplication";
 
-export class Addition {
-    static IDENTITY = Integer.ZERO;
+export class Multiplication {
+    static IDENTITY = Integer.ONE;
 
     static apply(a: Number, b: Number) {
         if (a instanceof Integer && b instanceof Integer) {
-            return Integer.from(a.value + b.value);
+            return Integer.from(a.value * b.value);
         }
 
         if (a instanceof Integer) a = Rational.from(a);
@@ -16,10 +15,7 @@ export class Addition {
 
         if (a instanceof Rational && b instanceof Rational) {
             return Rational.from(
-                Addition.apply(
-                    Multiplication.apply(a.numerator, b.denominator),
-                    Multiplication.apply(b.numerator, a.denominator),
-                ),
+                Multiplication.apply(a.numerator, b.numerator),
                 Multiplication.apply(a.denominator, b.denominator),
             ).simplify();
         }
